@@ -3,6 +3,7 @@ const express = require('express')
 const morgan = require('morgan')
 const m = require('./helpers/middlewares')
 const uuid = require('uuid');
+const _ = require('lodash');
 // App
 const app = express()
 const expressJwt = require('express-jwt');
@@ -25,7 +26,6 @@ app.get('/', (req, res) => {
     res.json({ message: 'Hello world' })
 })
 
-/* Register dev */
 app.post('/register',m.checkFieldsRegister, async (req, res) => {
   console.log('************* register ****************');
   let uid = uuid.v1();
@@ -40,12 +40,23 @@ app.post('/register',m.checkFieldsRegister, async (req, res) => {
   }
   // console.log(dev);
   let array = fs.existsSync(filename) ? JSON.parse(fs.readFileSync(filename, 'utf8')) : [];
-  array.push(dev);
-  helper.writeJSONFile(filename, array);
-  const token = await helper.signToken({"id":dev.id});
-  res.status(200).send({
-    "token": token,
+  let exist = _.findIndex(array,function(data){
+    return data.name == dev.name
   });
+  console.log('exist: ',exist);
+  if(exist < 0){
+    array.push(dev);
+    helper.writeJSONFile(filename, array);
+    const token = await helper.signToken({"id":dev.id});
+    res.status(200).send({
+      "token": token,
+    });
+  } else {
+    res.json({
+      "message": "Dev already exists.",
+    });
+  }
+
 
 })
 app.use('/auth', expressJwt({
