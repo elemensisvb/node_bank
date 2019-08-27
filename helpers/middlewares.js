@@ -1,3 +1,4 @@
+// for int validation
 function mustBeInteger(req, res, next) {
     const id = req.params.id
 
@@ -7,7 +8,7 @@ function mustBeInteger(req, res, next) {
         next()
     }
 }
-
+// validation for update api data
 function checkFieldsBank(req, res, next) {
     const { senderAccountNo,receiverAccountNo, amount } = req.body
 
@@ -17,7 +18,7 @@ function checkFieldsBank(req, res, next) {
         res.status(400).json({ message: 'fields are not good' })
     }
 }
-
+// validation for registeration data
 function checkFieldsRegister(req, res, next) {
     const { name, password, contactNo, city, pinNo } = req.body
 

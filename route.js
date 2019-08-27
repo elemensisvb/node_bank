@@ -37,7 +37,6 @@ router.get('/:id', m.mustBeInteger, async (req, res) => {
 /* Update a bank */
 router.put('/', m.checkFieldsBank, async (req, res) => {
     console.log('update account.........');
-    // const id = req.params.id
 
     await bank.updateBank(req.body)
     .then(bank => {
@@ -45,12 +44,10 @@ router.put('/', m.checkFieldsBank, async (req, res) => {
       if(bank){
         res.json({
           message: `The bank balance has been updated`,
-          // content: bank
         })
       } else {
         res.json({
           message: `Sorry! insufficient balance in your account.`,
-          // content: bank
         })
       }
 

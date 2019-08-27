@@ -25,11 +25,9 @@ const PORT = process.env.PORT || 1337
 app.get('/', (req, res) => {
     res.json({ message: 'Hello world' })
 })
-
+// to register a dev
 app.post('/register',m.checkFieldsRegister, async (req, res) => {
-  console.log('************* register ****************');
   let uid = uuid.v1();
-  console.log('------:',uid);
   let dev = {
     "id":uid,
     "name":req.body.name,
@@ -43,7 +41,6 @@ app.post('/register',m.checkFieldsRegister, async (req, res) => {
   let exist = _.findIndex(array,function(data){
     return data.name == dev.name
   });
-  console.log('exist: ',exist);
   if(exist < 0){
     array.push(dev);
     helper.writeJSONFile(filename, array);
@@ -56,9 +53,8 @@ app.post('/register',m.checkFieldsRegister, async (req, res) => {
       "message": "Dev already exists.",
     });
   }
-
-
 })
+// jwt auth
 app.use('/auth', expressJwt({
   secret: 'test123',
 }),async function(req, res, next) {

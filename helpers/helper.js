@@ -9,7 +9,7 @@ const getNewId = (array) => {
 }
 
 const newDate = () => new Date().toString()
-
+// check for valid id
 function mustBeInArray(array, id) {
   console.log(id);
     return new Promise((resolve, reject) => {
@@ -23,7 +23,7 @@ function mustBeInArray(array, id) {
         resolve(row)
     })
 }
-
+// write data to json file
 function writeJSONFile(filename, content) {
     fs.writeFileSync(filename, JSON.stringify(content), 'utf8', (err) => {
         if (err) {
@@ -31,13 +31,13 @@ function writeJSONFile(filename, content) {
         }
     })
 }
-
+// generate jwt token
 async function signToken(info) {
   return await jwt.sign(info, 'test123', {
     expiresIn: '7d'
   });
 }
-
+// check for valid dev
 async function approveDev(array,id){
   return new Promise((resolve, reject) => {
       const row = array.find(r => r.id == id)

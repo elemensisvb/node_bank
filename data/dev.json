@@ -1,1 +1,8 @@
-[{"id":"adb1f980-c8c7-11e9-9804-6fe1cd2f6e1d","name":"test2","password":1234,"contactNo":62764392,"city":"Melbourne","pinNo":3145}]
+[{
+  "id": "adb1f980-c8c7-11e9-9804-6fe1cd2f6e1d",
+  "name": "test2",
+  "password": 1234,
+  "contactNo": 62764392,
+  "city": "Melbourne",
+  "pinNo": 3145
+}]
