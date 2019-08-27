@@ -1,0 +1,9 @@
+[{
+  "userId": 1,
+  "accountNo": "12345",
+  "amount": 60000
+}, {
+  "userId": 2,
+  "accountNo": "67890",
+  "amount": 5000
+}]
